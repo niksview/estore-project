@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'main' %}
+
+<!-- main start-->
+        <div class="row mt-5">
+            <div class="col-md-9">
+                {% for x in data %}
+                {% if forloop.counter == 1 %}
+                <h5 class="bg-danger text-white p-2">Customer details</h5>
+                <p><strong>Name: </strong>{{x.uid.username}}</p>
+                <p><strong>Mobile: </strong>9090909090</p>
+                <p><strong>Email: </strong>{{x.uid.email}}</p>
+                {% endif %}
+                {% endfor %}
+                <h5 class="bg-danger text-white p-2">Product details</h5>
+                {% for x in data %}
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                      <img src="{{x.pid.pimage.url}}" width="100%" height="" alt="" />
+                    </div>
+                    <div class="col-md-8">
+                      <p><strong>Product Name: &nbsp;&nbsp;</strong>{{x.pid.name}}</p><!-- &nbsp is entity used for space, there are lot more entityies as requirement which are not avsilable on keyboard, get it on crome-->
+                      <p><strong>Price: &nbsp;&nbsp;</strong>Rs.{{x.pid.price}}</p>
+                      {% if x.pid.cat == 1 %}
+                      <p><strong>Category:&nbsp;&nbsp;</strong>Mobile</p>
+                      {% elif x.pid.cat == 2 %}
+                      <p><strong>Category:&nbsp;&nbsp;</strong>Shoes</p>
+                      {% else %}
+                      <p><strong>Category:&nbsp;&nbsp;</strong>Clothes</p>
+                      {% endif %}
+                      <p><strong>Product Description:&nbsp;&nbsp;</strong>{{x.pid.pdetails}}</p>
+                      <br>
+                      
+                      <a href="/remove/{{x.id}}"><button class="btn btn-danger">Remove</button></a>
+                    </div>
+                </div> <!-- product detail div-->
+                {% endfor %}
+            </div><!-- customer and product detail-->
+            <div class="col-md-3">
+                <h5 class="bg-danger text-white p-2">Total Amount</h5>
+                <p><strong>Total({{n}} items):</strong>Rs.{{total}}</p>
+                <hr>
+                <p><strong>Total Amount:</strong>Rs.{{total}}</p>
+                <a href="/makepayment"><button class="btn btn-danger">Make Payment</button></a>
+            </div><!-- total amount-->
+        </div>
+
+        <!-- main end-->
+
+
+{% endblock 'main' %}

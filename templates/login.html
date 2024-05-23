@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="static/asset/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="static/asset/css/style.css" />
+</head>
+<body>
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-md-12">
+            <a href="/" class="anchor">Home page</a>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-md-4 shadow mt-4 mx-auto">
+                <h2>Login</h2>
+                {% if errmsg %}
+                <div class="alert alert-danger">
+                    {{errmsg}}
+                </div>
+                {% endif %}
+                <form method="POST" action="/login">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="input1" class="form-label"><strong>Username:</strong></label>
+                        <input type="email" name="uname" class="form-control" id="input1" placeholder="Enter username">
+                      </div><!-- username-->
+                      <div class="mb-3">
+                        <label for="input2" class="form-label"><strong>Password:</strong></label>
+                        <input type="password" name="upass" class="form-control" id="input2" placeholder="Enter password">
+                      </div><!-- password-->
+                     
+                      <div class="mb-3">
+                        <input type="submit" class="btn btn-danger" value="Login" />
+                        Not User?<a href="/register" class="anchor">Register</a>
+                      </div><!-- submit button-->
+                      {% if success %}
+                    <div class="alert alert-success">
+                        {{success}}
+                    </div>
+                    {% endif %}
+
+                </form>
+            </div><!-- col div end-->
+        </div><!-- row div end-->
+    </div><!-- container div end-->
+    
+    <script src="static/asset/js/bootstrap.min.js"></script>
+</body>
+</html>
